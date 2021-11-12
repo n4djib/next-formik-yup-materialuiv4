@@ -1,4 +1,6 @@
-import React, {useState} from 'react'
+/* eslint-disable */
+
+import React from 'react'
 import fetch from 'isomorphic-unfetch'
 import useSWR from 'swr'
 
@@ -11,38 +13,34 @@ async function fetcher(url) {
   return json;
 }
 
-const countries = () => {
-    // const { data, error } = useSWR(API_URL, fetcher);
+const countries = ({countries}) => {
+    const { data, error } = useSWR(API_URL, fetcher);
   
-    // if (error) return <div>failed to load</div>;
-    // // if (!countries) return <div>loading...</div>;
+    if (error) return <div>failed to load</div>;
+    // if (!data) return <div>loading...</div>;
 
-    // if (data)
-    //     countries = data
-
-    const [user, setUser] = useState('')
-
+    if (data)
+        countries = data
 
     return (
         <div>
-            test
-            {/* {countries.map(country => 
+            {countries.map(country => 
                 (<div key={country.id}>{country.code} - {country.name}</div>)
-            )} */}
+            )}
         </div>
     )
 }
 
 // export async function getServerSideProps(context) {
-// // export async function getStaticProps(context) {
-//     const countries = await fetcher(API_URL)
+export async function getStaticProps(context) {
+    const countries = await fetcher(API_URL)
 
-//     return {
-//         props: {
-//             countries
-//         }
-//     }
-// }
+    return {
+        props: {
+            countries
+        }
+    }
+}
 
 export default countries
 

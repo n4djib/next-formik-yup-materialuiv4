@@ -7,7 +7,7 @@ import * as Yup from 'yup'
 import Header from '../components/Header'
 import Textfield from '../components/FormsUI/Textfield'
 
-import styles from '../styles/Home.module.css'
+// import styles from '../styles/Home.module.css'
 
 
 
@@ -37,6 +37,7 @@ const FORM_VALIDATION = Yup.object().shape({
 
 export default function Home() {
   const classes = useStyles()
+
 
   return (
     <Grid container>
@@ -81,7 +82,6 @@ export default function Home() {
                     Booking Information
                   </Typography>
                 </Grid>
-
               </Grid>
             </Form>
           </Formik>
